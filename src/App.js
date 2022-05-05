@@ -21,7 +21,7 @@ function App() {
   } = useStyles({ navbarHeight, footerHeight });
 
   const analyticsInitializer = () => {
-    ReactGA.initialize('314177706');
+    ReactGA.initialize('G-SRNY6CHN36');
     ReactGA.send({
       hitType: 'pageview',
       page: window.location.pathname + window.location.search,
