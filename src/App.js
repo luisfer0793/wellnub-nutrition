@@ -1,5 +1,5 @@
 import { Fragment, useEffect } from 'react';
-import ReactGA from 'react-ga';
+import ReactGA from 'react-ga4';
 import { useLocation } from 'react-router-dom';
 
 import { useElementSize } from '@mantine/hooks';
@@ -21,8 +21,8 @@ function App() {
   } = useStyles({ navbarHeight, footerHeight });
 
   const analyticsInitializer = () => {
-    ReactGA.initialize('UA-228112100-1 ');
-    ReactGA.pageview(window.location.pathname + window.location.search);
+    ReactGA.initialize('314177706');
+    ReactGA.send(window.location.pathname + window.location.search);
   };
 
   useEffect(() => {
