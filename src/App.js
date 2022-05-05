@@ -22,7 +22,10 @@ function App() {
 
   const analyticsInitializer = () => {
     ReactGA.initialize('314177706');
-    ReactGA.send(window.location.pathname + window.location.search);
+    ReactGA.send({
+      hitType: 'pageview',
+      page: window.location.pathname + window.location.search,
+    });
   };
 
   useEffect(() => {
