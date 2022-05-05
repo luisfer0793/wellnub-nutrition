@@ -1,11 +1,12 @@
+import { forwardRef } from 'react';
 import { Container, Grid, Text, Title } from '@mantine/core';
 import { useStyles } from './Footer.styles';
 
-const Footer = () => {
+const Footer = forwardRef((_, ref) => {
   const { classes, cx } = useStyles();
 
   return (
-    <footer className={cx(classes.footer, classes.section)}>
+    <footer className={cx(classes.footer, classes.section)} ref={ref}>
       <Container size="xl">
         <Grid>
           <Grid.Col span={3}>
@@ -72,6 +73,6 @@ const Footer = () => {
       </Container>
     </footer>
   );
-};
+});
 
 export default Footer;

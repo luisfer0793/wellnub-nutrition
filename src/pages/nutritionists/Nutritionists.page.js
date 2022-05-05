@@ -1,23 +1,31 @@
+import { useSelector } from 'react-redux';
+
 import { Container, Title } from '@mantine/core';
 
-import { NutritionistCard } from 'components';
+import { NutritionistCard, PageLayout } from 'components';
+
+import { nutritionistsSelector } from 'redux/slices/nutritionists/nutritionists.selector';
+
 import { useStyles } from './Nutritionists.styles';
 
 const NutritionistsPage = () => {
+  const nutritionists = useSelector(nutritionistsSelector);
+
   const { classes } = useStyles();
 
   return (
-    <Container size="xl">
-      <Title align="center" order={1} className={classes.title}>
-        Nutriólogos
-      </Title>
-      <div className={classes.grid}>
-        <NutritionistCard />
-        <NutritionistCard />
-        <NutritionistCard />
-        <NutritionistCard />
-      </div>
-    </Container>
+    <PageLayout>
+      <Container size="xl">
+        <Title align="center" order={1} className={classes.title}>
+          Nutriólogos
+        </Title>
+        <div className={classes.grid}>
+          {nutritionists.map(item => (
+            <NutritionistCard key={item.id} nutritionist={item} />
+          ))}
+        </div>
+      </Container>
+    </PageLayout>
   );
 };
 

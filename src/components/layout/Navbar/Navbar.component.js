@@ -1,13 +1,17 @@
+import { forwardRef } from 'react';
 import { Link } from 'react-router-dom';
 import { Button, Container, Space, Text } from '@mantine/core';
 
 import { useAuthentication } from 'hooks/useAuthentication.hook';
+import { useAnalyticsEventTracker } from 'hooks/useAnalyticsEventTracker.hook';
 
 import AvatarDropdown from '../../common/dropdowns/AvatarDropdown/AvatarDropdown.component';
 
 import { useStyles } from './Navbar.styles';
 
-const Navbar = () => {
+const Navbar = forwardRef((_, ref) => {
+  const { eventTracker } = useAnalyticsEventTracker('Authentication');
+
   const { isAuthenticated } = useAuthentication();
 
   const {
@@ -15,8 +19,12 @@ const Navbar = () => {
     cx,
   } = useStyles();
 
+  const onLoginClickHandler = () => {
+    eventTracker('LoginClick', 'LoginClick');
+  };
+
   return (
-    <nav className={navbar}>
+    <nav className={navbar} ref={ref}>
       <Container fluid px={70}>
         <div className={flex}>
           <Text className={logo} weight={700} component={Link} to="/">
@@ -43,7 +51,7 @@ const Navbar = () => {
                 <Text
                   className={asLink}
                   component={Link}
-                  to="/nutriologos"
+                  to="/dentistas"
                   size="sm"
                 >
                   Dentistas
@@ -53,7 +61,7 @@ const Navbar = () => {
                 <Text
                   className={asLink}
                   component={Link}
-                  to="/nutriologos"
+                  to="/psicologos"
                   size="sm"
                 >
                   Psicologos
@@ -67,7 +75,12 @@ const Navbar = () => {
             )}
             {!isAuthenticated && (
               <div className={flex}>
-                <Button component={Link} to="login" color="green">
+                <Button
+                  component={Link}
+                  to="login"
+                  color="green"
+                  onClick={onLoginClickHandler}
+                >
                   Iniciar sesión
                 </Button>
                 <Space w="sm" />
@@ -81,6 +94,6 @@ const Navbar = () => {
       </Container>
     </nav>
   );
-};
+});
 
 export default Navbar;

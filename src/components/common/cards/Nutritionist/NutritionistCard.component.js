@@ -7,18 +7,19 @@ import {
   Text,
   Title,
 } from '@mantine/core';
+
+import { useAnalyticsEventTracker } from 'hooks/useAnalyticsEventTracker.hook';
+
 import { useStyles } from './NutritionistCard.styles';
 
-const badges = [
-  { id: 'badge-1', title: 'Alimentación cetogénica' },
-  { id: 'badge-2', title: 'Bulimia, anorexia y otros' },
-  { id: 'badge-3', title: 'Control de peso' },
-  { id: 'badge-4', title: 'Cirugía barítica' },
-  { id: 'badge-5', title: 'Alimentación vegetariana' },
-];
-
 const NutritionistCard = ({ nutritionist }) => {
+  const { eventTracker } = useAnalyticsEventTracker('NutritionistCard');
+
   const { classes } = useStyles();
+
+  const onConectClickHandler = () => {
+    eventTracker(`ConectOnNutritionist${nutritionist.name}`, 'Conect');
+  };
 
   return (
     <article className={classes.card}>
@@ -26,23 +27,21 @@ const NutritionistCard = ({ nutritionist }) => {
         <header className={classes.header}></header>
         <main className={classes.main}>
           <Avatar
-            src="https://images.unsplash.com/photo-1614436163996-25cee5f54290?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1942&q=80"
+            src={nutritionist.image}
             size="xl"
             radius="50%"
             className={classes.avatar}
           />
           <Title order={5} className={classes.title}>
-            Fernando Jiménez
+            {nutritionist.name}
           </Title>
-          <Text size="sm">
-            Nutriólogo especializado en dietas y nutrición vegana
-          </Text>
+          <Text size="sm">{nutritionist.title}</Text>
           <Group
             position="center"
             spacing="md"
             className={classes.buttonWrapper}
           >
-            <Button color="green" size="xs">
+            <Button color="green" size="xs" onClick={onConectClickHandler}>
               Conectar
             </Button>
             <Button variant="outline" color="green" size="xs">
@@ -57,7 +56,7 @@ const NutritionistCard = ({ nutritionist }) => {
           Especialidades
         </Text>
         <Stack align="center">
-          {badges.map(badge => (
+          {nutritionist.specialties.map(badge => (
             <Badge
               radius="xs"
               color="gray"
