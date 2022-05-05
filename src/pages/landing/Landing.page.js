@@ -1,5 +1,4 @@
 import { Fragment, useState } from 'react';
-import { Pagination } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
 import {
