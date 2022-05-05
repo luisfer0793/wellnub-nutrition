@@ -1,24 +1,18 @@
-import logo from './logo.svg';
-import './App.css';
+import { Fragment, useEffect, useState } from 'react';
+
+import { Footer, Navbar } from 'components';
+
+import { AppRoutes } from 'utils/Routes.utlil';
+import { useLocation } from 'react-router-dom';
 
 function App() {
+  const { pathname } = useLocation();
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Fragment>
+      {pathname !== '/login' && <Navbar />}
+      <AppRoutes />
+      {pathname !== '/login' && <Footer />}
+    </Fragment>
   );
 }
 
