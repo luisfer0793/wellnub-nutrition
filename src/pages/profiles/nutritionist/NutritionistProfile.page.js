@@ -1,6 +1,6 @@
-import { PageLayout } from 'components';
-import { Container, Title } from '@mantine/core';
 import { useParams } from 'react-router-dom';
+import { Container, Title } from '@mantine/core';
+import { PageLayout } from 'components';
 
 const NutritionistProfilePage = () => {
   const { id } = useParams();

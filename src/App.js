@@ -20,16 +20,15 @@ function App() {
     classes: { main },
   } = useStyles({ navbarHeight, footerHeight });
 
-  const analyticsInitializer = () => {
+  useEffect(() => {
     ReactGA.initialize('G-SRNY6CHN36');
+  }, []);
+
+  useEffect(() => {
     ReactGA.send({
       hitType: 'pageview',
       page: location.pathname + location.search,
     });
-  };
-
-  useEffect(() => {
-    analyticsInitializer();
   }, [location]);
 
   return (
