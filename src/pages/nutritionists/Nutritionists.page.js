@@ -1,4 +1,5 @@
 import { useSelector } from 'react-redux';
+import { Outlet } from 'react-router-dom';
 
 import { Container, Title } from '@mantine/core';
 
@@ -25,6 +26,7 @@ const NutritionistsPage = () => {
           ))}
         </div>
       </Container>
+      <Outlet />
     </PageLayout>
   );
 };

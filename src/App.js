@@ -11,7 +11,7 @@ import { AppRoutes } from 'utils/Routes.utlil';
 import { useStyles } from './App.styles';
 
 function App() {
-  const { pathname } = useLocation();
+  const location = useLocation();
 
   const { ref: navbarRef, height: navbarHeight } = useElementSize();
   const { ref: footerRef, height: footerHeight } = useElementSize();
@@ -24,21 +24,21 @@ function App() {
     ReactGA.initialize('G-SRNY6CHN36');
     ReactGA.send({
       hitType: 'pageview',
-      page: window.location.pathname + window.location.search,
+      page: location.pathname + location.search,
     });
   };
 
   useEffect(() => {
     analyticsInitializer();
-  }, []);
+  }, [location]);
 
   return (
     <Fragment>
-      {pathname !== '/login' && <Navbar ref={navbarRef} />}
+      {location.pathname !== '/login' && <Navbar ref={navbarRef} />}
       <main className={main}>
         <AppRoutes />
       </main>
-      {pathname !== '/login' && <Footer ref={footerRef} />}
+      {location.pathname !== '/login' && <Footer ref={footerRef} />}
     </Fragment>
   );
 }

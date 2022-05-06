@@ -1,12 +1,22 @@
+import { useNavigate } from 'react-router-dom';
 import {
   Avatar,
   Badge,
   Button,
+  Divider,
   Group,
   Stack,
   Text,
   Title,
+  Tooltip,
 } from '@mantine/core';
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
+  faGlobe,
+  faHouse,
+  faLocationDot,
+} from '@fortawesome/free-solid-svg-icons';
 
 import { useAnalyticsEventTracker } from 'hooks/useAnalyticsEventTracker.hook';
 
@@ -15,10 +25,16 @@ import { useStyles } from './NutritionistCard.styles';
 const NutritionistCard = ({ nutritionist }) => {
   const { eventTracker } = useAnalyticsEventTracker('NutritionistCard');
 
+  const navigate = useNavigate();
+
   const { classes } = useStyles();
 
   const onConectClickHandler = () => {
     eventTracker(`ConectOnNutritionist${nutritionist.name}`, 'Conect');
+  };
+
+  const onReadMoreClickHandler = () => {
+    navigate(`/nutriologos/${nutritionist.id}`);
   };
 
   return (
@@ -36,6 +52,32 @@ const NutritionistCard = ({ nutritionist }) => {
             {nutritionist.name}
           </Title>
           <Text size="sm">{nutritionist.title}</Text>
+          <Group position="center">
+            {nutritionist.services.map(service => (
+              <Tooltip
+                key={service.id}
+                withArrow
+                color="teal"
+                label={service.title}
+                placement="end"
+                position="bottom"
+              >
+                <FontAwesomeIcon
+                  icon={
+                    {
+                      'En línea': faGlobe,
+                      Presencial: faHouse,
+                      'A domicilio': faLocationDot,
+                    }[service.title]
+                  }
+                  size="sm"
+                />
+              </Tooltip>
+            ))}
+          </Group>
+        </main>
+        <Divider />
+        <section className={classes.buttonSection}>
           <Group
             position="center"
             spacing="md"
@@ -44,11 +86,16 @@ const NutritionistCard = ({ nutritionist }) => {
             <Button color="green" size="xs" onClick={onConectClickHandler}>
               Conectar
             </Button>
-            <Button variant="outline" color="green" size="xs">
+            <Button
+              variant="outline"
+              color="green"
+              size="xs"
+              onClick={onReadMoreClickHandler}
+            >
               Ver más
             </Button>
           </Group>
-        </main>
+        </section>
       </div>
 
       <footer className={classes.footer}>

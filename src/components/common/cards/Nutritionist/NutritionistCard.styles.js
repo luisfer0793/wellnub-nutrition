@@ -18,11 +18,11 @@ export const useStyles = createStyles(theme => ({
     backgroundSize: 'cover',
     backgroundPosition: 'center',
     backgroundRepeat: 'no-repeat',
-    height: '15rem',
+    height: '12rem',
   },
   avatar: {
     position: 'absolute',
-    top: '10rem',
+    top: '8rem',
     left: '50%',
     transform: 'translateX(-50%)',
   },
@@ -54,7 +54,11 @@ export const useStyles = createStyles(theme => ({
     color: theme.colors.gray[5],
   },
   buttonWrapper: {
-    marginTop: theme.spacing.md,
+    paddingTop: theme.spacing.md,
+    paddingBottom: theme.spacing.md,
+  },
+  buttonSection: {
+    backgroundColor: theme.colors.gray[2],
   },
   infoWrapper: {
     position: 'relative',
