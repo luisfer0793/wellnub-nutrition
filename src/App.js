@@ -1,24 +1,29 @@
 import { Fragment, useEffect } from 'react';
 import ReactGA from 'react-ga4';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 import { useElementSize } from '@mantine/hooks';
 
-import { Footer, Navbar } from 'components';
+import { Footer, Header, RootRoutes } from 'components';
 
-import { AppRoutes } from 'utils/Routes.utlil';
+import { useAuthentication } from 'hooks/useAuthentication.hook';
+import { ROLES } from 'utils/constants.util';
 
 import { useStyles } from './App.styles';
 
 function App() {
+  const { isAuthenticated, user } = useAuthentication();
+
   const location = useLocation();
 
-  const { ref: navbarRef, height: navbarHeight } = useElementSize();
+  const navigate = useNavigate();
+
+  const { ref: headerRef, height: headerHeight } = useElementSize();
   const { ref: footerRef, height: footerHeight } = useElementSize();
 
   const {
     classes: { main },
-  } = useStyles({ navbarHeight, footerHeight });
+  } = useStyles({ headerHeight, footerHeight });
 
   useEffect(() => {
     ReactGA.initialize('G-SRNY6CHN36');
@@ -31,13 +36,36 @@ function App() {
     });
   }, [location]);
 
+  useEffect(() => {
+    switch (user.role) {
+      case ROLES.CLIENT:
+        navigate('/cliente', { replace: true });
+        break;
+      case ROLES.PARTNER:
+        navigate('/partner', { replace: true });
+        break;
+      case ROLES.NUTRITIONIST:
+        navigate('/nutriologo', { replace: true });
+        break;
+      case ROLES.ADMIN:
+        navigate('/administrador', { replace: true });
+        break;
+      default:
+        return;
+    }
+  }, [user]);
+
   return (
     <Fragment>
-      {location.pathname !== '/login' && <Navbar ref={navbarRef} />}
+      {location.pathname !== '/login' && !isAuthenticated && (
+        <Header ref={headerRef} />
+      )}
       <main className={main}>
-        <AppRoutes />
+        <RootRoutes />
       </main>
-      {location.pathname !== '/login' && <Footer ref={footerRef} />}
+      {location.pathname !== '/login' && !isAuthenticated && (
+        <Footer ref={footerRef} />
+      )}
     </Fragment>
   );
 }

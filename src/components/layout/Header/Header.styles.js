@@ -1,7 +1,7 @@
 import { createStyles } from '@mantine/core';
 
 export const useStyles = createStyles(theme => ({
-  navbar: {
+  header: {
     backgroundColor: theme.colors.gray[0],
     color: theme.colors.gray[9],
     paddingTop: theme.spacing.md,

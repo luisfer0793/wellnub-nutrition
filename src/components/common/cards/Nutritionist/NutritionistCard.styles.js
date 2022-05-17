@@ -1,6 +1,6 @@
 import { createStyles } from '@mantine/core';
 
-export const useStyles = createStyles(theme => ({
+export const useStyles = createStyles((theme, { banner }) => ({
   card: {
     display: 'grid',
     gridTemplateColumns: '2fr 1fr',
@@ -13,16 +13,15 @@ export const useStyles = createStyles(theme => ({
     backgroundColor: theme.colors.gray[0],
   },
   header: {
-    backgroundImage:
-      'linear-gradient(to right, rgba(169, 186, 160, .7), rgba(179, 186, 160, .7)), url("https://images.unsplash.com/photo-1490645935967-10de6ba17061?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8bnV0cmljaW9ufGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=900&q=60")',
+    backgroundImage: `linear-gradient(to right, rgba(0, 82, 73, .7), rgba(0, 82, 73, .7)), url("${banner}")`,
     backgroundSize: 'cover',
     backgroundPosition: 'center',
     backgroundRepeat: 'no-repeat',
-    height: '12rem',
+    height: '11rem',
   },
   avatar: {
     position: 'absolute',
-    top: '8rem',
+    top: '7rem',
     left: '50%',
     transform: 'translateX(-50%)',
   },

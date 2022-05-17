@@ -27,14 +27,15 @@ const NutritionistCard = ({ nutritionist }) => {
 
   const navigate = useNavigate();
 
-  const { classes } = useStyles();
+  const { classes } = useStyles({ banner: nutritionist.bannerImage });
 
   const onConectClickHandler = () => {
     eventTracker(`ConectOnNutritionist${nutritionist.name}`, 'Conect');
   };
 
   const onReadMoreClickHandler = () => {
-    navigate(`/nutriologos/${nutritionist.id}`);
+    const name = nutritionist.name.toLowerCase().split(' ').join('-');
+    navigate(name);
   };
 
   return (

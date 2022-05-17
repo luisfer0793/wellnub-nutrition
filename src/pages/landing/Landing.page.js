@@ -18,7 +18,9 @@ import {
   faArrowLeftLong,
 } from '@fortawesome/free-solid-svg-icons';
 
-import { TestimonialCard } from 'components';
+import { TestimonialCard, WithHelmet } from 'components';
+
+import { LANDING_PAGE_META_TAGS } from 'utils/constants.util';
 
 import { useStepperStyles, useStyles } from './Landing.styles';
 
@@ -116,7 +118,7 @@ const LandingPage = () => {
   };
 
   return (
-    <Fragment>
+    <WithHelmet noLayout title="Wellnub" metaTags={LANDING_PAGE_META_TAGS}>
       <header className={cx(classes.section, classes.hero)}>
         <Container size="xl">
           <div className={classes.marginBottomLg}>
@@ -253,7 +255,7 @@ const LandingPage = () => {
           </div>
         </Container>
       </section>
-    </Fragment>
+    </WithHelmet>
   );
 };
 

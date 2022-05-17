@@ -3,9 +3,11 @@ import { Outlet } from 'react-router-dom';
 
 import { Container, Title } from '@mantine/core';
 
-import { NutritionistCard, PageLayout } from 'components';
+import { NutritionistCard, WithHelmet } from 'components';
 
 import { nutritionistsSelector } from 'redux/slices/nutritionists/nutritionists.selector';
+
+import { NUTRITIONISTS_META_TAGS } from 'utils/constants.util';
 
 import { useStyles } from './Nutritionists.styles';
 
@@ -15,7 +17,10 @@ const NutritionistsPage = () => {
   const { classes } = useStyles();
 
   return (
-    <PageLayout>
+    <WithHelmet
+      metaTags={NUTRITIONISTS_META_TAGS}
+      title="Wellnub | Nutriólogos"
+    >
       <Container size="xl">
         <Title align="center" order={1} className={classes.title}>
           Nutriólogos
@@ -27,7 +32,7 @@ const NutritionistsPage = () => {
         </div>
       </Container>
       <Outlet />
-    </PageLayout>
+    </WithHelmet>
   );
 };
 

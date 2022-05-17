@@ -6,6 +6,8 @@ const initialState = {
       id: 'nutritionist-1',
       name: 'Robert Chase',
       title: 'Nutriólogo especializado en dietas y nutrición vegana',
+      bannerImage:
+        'https://images.unsplash.com/photo-1490645935967-10de6ba17061?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8bnV0cmljaW9ufGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=900&q=60',
       image:
         'https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2360&q=80',
       specialties: [
@@ -28,6 +30,8 @@ const initialState = {
       id: 'nutritionist-2',
       name: 'Allison Cameron',
       title: 'Educadora en diabetes',
+      bannerImage:
+        'https://images.unsplash.com/photo-1466637574441-749b8f19452f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2360&q=80',
       image:
         'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1587&q=80',
       specialties: [
@@ -50,6 +54,8 @@ const initialState = {
       id: 'nutritionist-3',
       name: 'Erick Foreman',
       title: 'Dietista',
+      bannerImage:
+        'https://images.unsplash.com/photo-1514995428455-447d4443fa7f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1587&q=80',
       image:
         'https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2360&q=80',
       specialties: [
@@ -71,6 +77,8 @@ const initialState = {
       id: 'nutritionist-4',
       name: 'Gregory House',
       title: 'Diagnosta y especialista en desnutrición',
+      bannerImage:
+        'https://images.unsplash.com/photo-1482049016688-2d3e1b311543?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1910&q=80',
       image:
         'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1587&q=80',
       specialties: [

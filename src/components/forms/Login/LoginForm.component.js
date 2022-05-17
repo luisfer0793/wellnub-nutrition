@@ -1,10 +1,13 @@
 import { useForm } from 'react-hook-form';
-
-import TextInputControlled from '../../common/inputs/TextInputControlled/TextInputControlled.component';
 import { Button, Checkbox, Divider, Text } from '@mantine/core';
+import TextInputControlled from '../../common/inputs/TextInputControlled/TextInputControlled.component';
 import PasswordInputControlled from '../../common/inputs/PasswordInputControlled/PasswordInputControlled.component';
 
+import { useLogInService } from 'network/services/common/useLogInService';
+
 const LoginForm = () => {
+  const { mutate: login, isLoading } = useLogInService();
+
   const { control, handleSubmit } = useForm({
     defaultValues: {
       email: '',
@@ -13,7 +16,7 @@ const LoginForm = () => {
   });
 
   const onSubmitHandler = data => {
-    console.log('Data: ', data);
+    login(data);
   };
 
   return (
@@ -45,7 +48,12 @@ const LoginForm = () => {
         </Text>
       </div>
       <br />
-      <Button color="green" type="submit" style={{ marginBottom: 20 }}>
+      <Button
+        loading={isLoading}
+        color="green"
+        type="submit"
+        style={{ marginBottom: 20 }}
+      >
         Iniciar sesión
       </Button>
       <Divider />

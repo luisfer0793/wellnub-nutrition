@@ -5,7 +5,7 @@ export const isAuthenticatedSelector = createSelector(
   isAuthenticated => isAuthenticated,
 );
 
-export const tokenSelector = createSelector(
-  [state => state.authentication.token],
-  token => token,
+export const userCredentialsSelector = createSelector(
+  [state => state.authentication.user],
+  user => user,
 );

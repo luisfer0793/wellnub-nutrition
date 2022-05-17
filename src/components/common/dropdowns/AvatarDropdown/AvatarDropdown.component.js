@@ -1,4 +1,5 @@
-import { Avatar, Divider, Menu } from '@mantine/core';
+import { Link } from 'react-router-dom';
+import { Avatar, Divider, Menu, Text } from '@mantine/core';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
@@ -10,36 +11,49 @@ import {
 
 import { useAuthentication } from 'hooks/useAuthentication.hook';
 
+import { ROLES } from 'utils/constants.util';
+
 import { useStyles } from './AvatarDropdown.styles';
 
 const AvatarDropdown = () => {
-  const { setAuthentication } = useAuthentication();
+  const { user, handleLogout } = useAuthentication();
 
   const {
-    classes: { icon },
+    classes: { icon, avatar },
   } = useStyles();
 
   const onLogoutClickHandler = () => {
-    setAuthentication(false);
+    handleLogout();
   };
 
   return (
     <Menu
       withArrow
       control={
-        <Avatar color="green" radius="xl">
+        <Avatar
+          color="green"
+          radius="xl"
+          size="md"
+          src={user.image}
+          className={avatar}
+        >
           LF
         </Avatar>
       }
       placement="end"
+      shadow="lg"
     >
       <Menu.Label>Aplicación</Menu.Label>
       <Menu.Item
+        component={Link}
+        to="dashboard"
         icon={<FontAwesomeIcon icon={faBriefcase} size="sm" className={icon} />}
       >
         Dashboard
       </Menu.Item>
       <Menu.Item
+        component={Link}
+        to="tutoriales"
         icon={
           <FontAwesomeIcon icon={faBookOpenReader} size="sm" className={icon} />
         }
@@ -65,6 +79,20 @@ const AvatarDropdown = () => {
         onClick={onLogoutClickHandler}
       >
         Cerrar sesión
+      </Menu.Item>
+      <Divider />
+      <Menu.Item disabled>
+        <Text size="sm" weight={600}>
+          Perfil de:{' '}
+          {
+            {
+              [ROLES.ADMIN]: 'Admin',
+              [ROLES.CLIENT]: 'Cliente',
+              [ROLES.PARTNER]: 'Partner',
+              [ROLES.NUTRITIONIST]: 'Nutriólogo',
+            }[user.role]
+          }
+        </Text>
       </Menu.Item>
     </Menu>
   );

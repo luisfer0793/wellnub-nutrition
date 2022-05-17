@@ -33,4 +33,7 @@ export const useStyles = createStyles(theme => ({
     backgroundSize: 'cover',
     backgroundRepeat: 'no-repeat',
   },
+  stack: {
+    marginBottom: theme.spacing.xl,
+  },
 }));
