@@ -9,7 +9,7 @@ import {
   faArrowRightFromBracket,
 } from '@fortawesome/free-solid-svg-icons';
 
-import { useAuthentication } from 'hooks/useAuthentication.hook';
+import { useAuthentication } from 'hooks';
 
 import { ROLES } from 'utils/constants.util';
 

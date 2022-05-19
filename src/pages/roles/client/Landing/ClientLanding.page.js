@@ -2,7 +2,7 @@ import { WithHelmet } from 'components';
 
 import { Title } from '@mantine/core';
 
-import { useAuthentication } from 'hooks/useAuthentication.hook';
+import { useAuthentication } from 'hooks';
 
 const ClientLandingPage = () => {
   const { user } = useAuthentication();

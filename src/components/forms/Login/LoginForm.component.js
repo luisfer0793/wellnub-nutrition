@@ -3,7 +3,7 @@ import { Button, Checkbox, Divider, Text } from '@mantine/core';
 import TextInputControlled from '../../common/inputs/TextInputControlled/TextInputControlled.component';
 import PasswordInputControlled from '../../common/inputs/PasswordInputControlled/PasswordInputControlled.component';
 
-import { useLogInService } from 'network/services/common/useLogInService';
+import { useLogInService } from 'network/services/common';
 
 const LoginForm = () => {
   const { mutate: login, isLoading } = useLogInService();

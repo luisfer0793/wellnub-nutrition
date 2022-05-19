@@ -2,7 +2,7 @@ import { showNotification } from '@mantine/notifications';
 
 import { notificationStyler } from 'utils/functions.util';
 
-export const useNotification =
+const useNotification =
   () =>
   (options = { variant: '' }) => {
     showNotification({
@@ -10,3 +10,5 @@ export const useNotification =
       styles: notificationStyler(options.variant),
     });
   };
+
+export default useNotification;

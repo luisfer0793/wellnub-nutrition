@@ -1,30 +1,54 @@
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector, useDispatch, batch } from 'react-redux';
 
 import {
-  isAuthenticatedSelector,
-  userCredentialsSelector,
+  authenticationIsAuthenticatedSelector,
+  authenticationUserSelector,
+  authenticationTokensSelector,
 } from 'redux/slices/authentication/authentication.selector';
-import { setAuthentication } from 'redux/slices/authentication/authentication.slice';
+import {
+  AUTHENTICATION_INITIAL_STATE,
+  setAuthenticationStatus,
+  setAuthenticationTokens,
+  setAuthenticationUser,
+} from 'redux/slices/authentication/authentication.slice';
 
-export const useAuthentication = () => {
-  const isAuthenticated = useSelector(isAuthenticatedSelector);
-  const user = useSelector(userCredentialsSelector);
+const useAuthentication = () => {
+  const user = useSelector(authenticationUserSelector);
+  const tokens = useSelector(authenticationTokensSelector);
+  const isAuthenticated = useSelector(authenticationIsAuthenticatedSelector);
 
   const dispatch = useDispatch();
 
-  const handleLogin = user => {
-    dispatch(setAuthentication(true, user));
+  const handleLogin = payload => {
+    batch(() => {
+      dispatch(setAuthenticationStatus(true));
+      dispatch(setAuthenticationUser(payload.user));
+      dispatch(setAuthenticationTokens(payload.tokens));
+    });
   };
 
   const handleLogout = () => {
-    dispatch(setAuthentication(false));
+    batch(() => {
+      dispatch(
+        setAuthenticationStatus(AUTHENTICATION_INITIAL_STATE.isAuthenticated),
+      );
+      dispatch(setAuthenticationUser(AUTHENTICATION_INITIAL_STATE.user));
+      dispatch(setAuthenticationTokens(AUTHENTICATION_INITIAL_STATE.tokens));
+    });
+  };
+
+  const handleAuthenticationTokens = tokens => {
+    dispatch(setAuthenticationTokens(tokens));
   };
 
   return {
     user,
+    tokens,
     isAuthenticated,
     handleLogin,
     handleLogout,
-    setAuthentication,
+    handleAuthenticationTokens,
   };
 };
+
+export default useAuthentication;

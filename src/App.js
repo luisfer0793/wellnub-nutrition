@@ -1,22 +1,19 @@
 import { Fragment, useEffect } from 'react';
 import ReactGA from 'react-ga4';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 
 import { useElementSize } from '@mantine/hooks';
 
 import { Footer, Header, RootRoutes } from 'components';
 
-import { useAuthentication } from 'hooks/useAuthentication.hook';
-import { ROLES } from 'utils/constants.util';
+import { useAuthentication } from 'hooks';
 
 import { useStyles } from './App.styles';
 
 function App() {
-  const { isAuthenticated, user } = useAuthentication();
+  const { isAuthenticated } = useAuthentication();
 
   const location = useLocation();
-
-  const navigate = useNavigate();
 
   const { ref: headerRef, height: headerHeight } = useElementSize();
   const { ref: footerRef, height: footerHeight } = useElementSize();
@@ -35,25 +32,6 @@ function App() {
       page: location.pathname + location.search,
     });
   }, [location]);
-
-  useEffect(() => {
-    switch (user.role) {
-      case ROLES.CLIENT:
-        navigate('/cliente', { replace: true });
-        break;
-      case ROLES.PARTNER:
-        navigate('/partner', { replace: true });
-        break;
-      case ROLES.NUTRITIONIST:
-        navigate('/nutriologo', { replace: true });
-        break;
-      case ROLES.ADMIN:
-        navigate('/administrador', { replace: true });
-        break;
-      default:
-        return;
-    }
-  }, [user]);
 
   return (
     <Fragment>

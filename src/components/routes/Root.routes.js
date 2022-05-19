@@ -13,14 +13,31 @@ import { ROLES } from 'utils/constants.util';
 
 import { ProtectedRoute } from './Protected.route';
 
+import { useAuthentication } from 'hooks';
+
 import ClientRoutes from './Client.routes';
 import PartnerRoutes from './Partner.routes';
 import NutritionistRoutes from './Nutritionist.routes';
 import AdministratorRoutes from './Administrator.routes';
 
 const RootRoutes = () => {
+  const { isAuthenticated, user } = useAuthentication();
+
   return (
-    <Routes path="/">
+    <Routes
+      path={
+        isAuthenticated
+          ? `/${
+              {
+                [ROLES.CLIENT]: 'cliente',
+                [ROLES.PARTNER]: 'partner',
+                [ROLES.NUTRITIONIST]: 'nutriologo',
+                [ROLES.ADMIN]: 'administrador',
+              }[user.role]
+            }`
+          : '/'
+      }
+    >
       {/* ---- PUBLIC ROUTES ---- */}
       <Route index element={<LandingPage />} />
       <Route path="nutriologos" element={<NutritionistsPage />} />

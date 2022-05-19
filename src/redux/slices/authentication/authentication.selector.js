@@ -1,11 +1,7 @@
-import { createSelector } from '@reduxjs/toolkit';
+export const authenticationTokensSelector = state =>
+  state.authentication.tokens;
 
-export const isAuthenticatedSelector = createSelector(
-  [state => state.authentication.isAuthenticated],
-  isAuthenticated => isAuthenticated,
-);
+export const authenticationIsAuthenticatedSelector = state =>
+  state.authentication.isAuthenticated;
 
-export const userCredentialsSelector = createSelector(
-  [state => state.authentication.user],
-  user => user,
-);
+export const authenticationUserSelector = state => state.authentication.user;

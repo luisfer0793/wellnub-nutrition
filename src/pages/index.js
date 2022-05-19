@@ -9,3 +9,5 @@ export { default as UnauthorizedPage } from './unauthorized/Unauthorized.page';
 
 // ---- CLIENT PAGES ----
 export { default as ClientLandingPage } from './roles/client/Landing/ClientLanding.page';
+export { default as ClientCalendarPage } from './roles/client/Calendar/ClientCalendar.page';
+export { default as ClientPassesPage } from './roles/client/Passes/ClientPasses.page';

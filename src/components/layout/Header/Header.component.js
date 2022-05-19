@@ -13,10 +13,9 @@ import {
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBell } from '@fortawesome/free-solid-svg-icons';
 
-import { useAuthentication } from 'hooks/useAuthentication.hook';
-import { useAnalyticsEventTracker } from 'hooks/useAnalyticsEventTracker.hook';
+import { useAnalyticsEventTracker, useAuthentication } from 'hooks';
 
-import AvatarDropdown from '../../common/dropdowns/AvatarDropdown/AvatarDropdown.component';
+import AvatarDropdown from '../../common/dropdowns/Avatar/AvatarDropdown.component';
 
 import { ROLES } from 'utils/constants.util';
 

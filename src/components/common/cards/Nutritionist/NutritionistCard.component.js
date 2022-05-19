@@ -18,7 +18,7 @@ import {
   faLocationDot,
 } from '@fortawesome/free-solid-svg-icons';
 
-import { useAnalyticsEventTracker } from 'hooks/useAnalyticsEventTracker.hook';
+import { useAnalyticsEventTracker } from 'hooks';
 
 import { useStyles } from './NutritionistCard.styles';
 

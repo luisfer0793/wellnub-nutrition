@@ -1,17 +1,17 @@
 import { useEffect } from 'react';
 import { wellnub } from 'network/wellnub.api';
-import { useRefreshToken } from './useRefreshToken.hook';
-import { useAuthentication } from './useAuthentication.hook';
+import useRefreshToken from './useRefreshToken.hook';
+import useAuthentication from './useAuthentication.hook';
 
-export const useAxiosInterceptors = () => {
+const useWellnubAPI = () => {
   const { refreshToken } = useRefreshToken();
-  const { user } = useAuthentication();
+  const { tokens } = useAuthentication();
 
   useEffect(() => {
     const requestInterceptor = wellnub.interceptors.request.use(
       config => {
         if (!config.headers['Authorization']) {
-          config.headers['Authorization'] = `Bearer ${user.accessToken}`;
+          config.headers['Authorization'] = `Bearer ${tokens.access}`;
         }
         return config;
       },
@@ -25,8 +25,8 @@ export const useAxiosInterceptors = () => {
       async error => {
         const previousRequest = error?.config;
         if (
-          error?.response?.status === 401 &&
-          error?.response?.message === 'jwt expired' &&
+          error?.response?.data?.code === 401 &&
+          error?.response?.data?.message === 'jwt expired' &&
           !previousRequest?.sent
         ) {
           previousRequest.sent = true;
@@ -42,7 +42,9 @@ export const useAxiosInterceptors = () => {
       wellnub.interceptors.request.eject(requestInterceptor);
       wellnub.interceptors.response.eject(responseInterceptor);
     };
-  }, [refreshToken, user]);
+  }, [refreshToken, tokens]);
 
   return wellnub;
 };
+
+export default useWellnubAPI;
