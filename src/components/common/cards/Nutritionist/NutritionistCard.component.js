@@ -49,9 +49,7 @@ const NutritionistCard = ({ nutritionist }) => {
             radius="50%"
             className={classes.avatar}
           />
-          <Title order={5} className={classes.title}>
-            {nutritionist.name}
-          </Title>
+          <Title order={5}>{nutritionist.name}</Title>
           <Text size="sm">{nutritionist.title}</Text>
           <Group position="center">
             {nutritionist.services.map(service => (

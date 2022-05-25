@@ -6,6 +6,7 @@ export { default as PartnersPage } from './partners/Partners.page';
 export { default as NutritionistProfilePage } from './profiles/nutritionist/NutritionistProfile.page';
 
 export { default as UnauthorizedPage } from './unauthorized/Unauthorized.page';
+export { default as NotFoundPage } from './notFound/notFound.page';
 
 // ---- CLIENT PAGES ----
 export { default as ClientLandingPage } from './roles/client/Landing/ClientLanding.page';

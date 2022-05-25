@@ -8,6 +8,5 @@ export const useStyles = createStyles(theme => ({
   },
   title: {
     marginBottom: theme.spacing.xl,
-    color: theme.colors.dark[9],
   },
 }));

@@ -7,37 +7,20 @@ import {
   NutritionistProfilePage,
   PartnersPage,
   UnauthorizedPage,
+  NotFoundPage,
 } from 'pages';
 
 import { ROLES } from 'utils/constants.util';
 
-import { ProtectedRoute } from './Protected.route';
-
-import { useAuthentication } from 'hooks';
-
 import ClientRoutes from './Client.routes';
 import PartnerRoutes from './Partner.routes';
+import { ProtectedRoute } from './Protected.route';
 import NutritionistRoutes from './Nutritionist.routes';
 import AdministratorRoutes from './Administrator.routes';
 
 const RootRoutes = () => {
-  const { isAuthenticated, user } = useAuthentication();
-
   return (
-    <Routes
-      path={
-        isAuthenticated
-          ? `/${
-              {
-                [ROLES.CLIENT]: 'cliente',
-                [ROLES.PARTNER]: 'partner',
-                [ROLES.NUTRITIONIST]: 'nutriologo',
-                [ROLES.ADMIN]: 'administrador',
-              }[user.role]
-            }`
-          : '/'
-      }
-    >
+    <Routes path="/">
       {/* ---- PUBLIC ROUTES ---- */}
       <Route index element={<LandingPage />} />
       <Route path="nutriologos" element={<NutritionistsPage />} />
@@ -62,6 +45,7 @@ const RootRoutes = () => {
       {/* ---- END OF PROTECTED ROUTES ---- */}
 
       <Route path="unauthorized" element={<UnauthorizedPage />} />
+      <Route path="*" element={<NotFoundPage />} />
     </Routes>
   );
 };

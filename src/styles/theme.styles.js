@@ -18,4 +18,15 @@ export const theme = {
       '#091818',
     ],
   },
+  other: {
+    responsiveFontSizes: [
+      '1.5rem',
+      '2.8rem',
+      '2.4rem',
+      '2rem',
+      '1.8rem',
+      '1.6rem',
+      '1.5rem',
+    ],
+  },
 };

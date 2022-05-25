@@ -16,7 +16,7 @@ const ClientPassesPage = () => {
   }
 
   return (
-    <WithHelmet title={`${user.name} | Mis pases | Wellnub`}>
+    <WithHelmet noLayout title={`${user.name} | Mis pases | Wellnub`}>
       <Title order={1}>Pases</Title>
       <pre>{JSON.stringify(data, null, 2)}</pre>
     </WithHelmet>

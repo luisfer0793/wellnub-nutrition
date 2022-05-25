@@ -1,9 +1,10 @@
 import { useForm } from 'react-hook-form';
 import { Button, Checkbox, Divider, Text } from '@mantine/core';
-import TextInputControlled from '../../common/inputs/TextInputControlled/TextInputControlled.component';
-import PasswordInputControlled from '../../common/inputs/PasswordInputControlled/PasswordInputControlled.component';
+import ControlledTextInput from '../../common/inputs/ControlledTextInput.component';
+import ControlledPasswordInput from '../../common/inputs/ControlledPasswordInput.component';
 
 import { useLogInService } from 'network/services/common';
+import { Link } from 'react-router-dom';
 
 const LoginForm = () => {
   const { mutate: login, isLoading } = useLogInService();
@@ -21,14 +22,14 @@ const LoginForm = () => {
 
   return (
     <form onSubmit={handleSubmit(onSubmitHandler)}>
-      <TextInputControlled
+      <ControlledTextInput
         control={control}
         name="email"
         size="md"
         placeholder="user@example.com"
       />
       <br />
-      <PasswordInputControlled
+      <ControlledPasswordInput
         control={control}
         name="password"
         size="md"
@@ -43,7 +44,15 @@ const LoginForm = () => {
         }}
       >
         <Checkbox label="Recordar" />
-        <Text variant="link" size="sm" weight={700} color="green">
+        {/*<Button variant="subtle" color="green" size="sm">¿Olvidaste tu contraseña?</Button>*/}
+        <Text
+          variant="link"
+          weight={700}
+          color="green"
+          component={Link}
+          to="/recuperar-contraseña"
+          sx={theme => ({ fontSize: '1.4rem' })}
+        >
           ¿Olvidaste tu contraseña?
         </Text>
       </div>

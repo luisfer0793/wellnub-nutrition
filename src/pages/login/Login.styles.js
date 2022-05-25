@@ -5,9 +5,12 @@ export const useStyles = createStyles(theme => ({
     minHeight: '100vh',
     display: 'grid',
     gridTemplateColumns: 'repeat(2, 1fr)',
+    [theme.fn.smallerThan('xs')]: {
+      display: 'block',
+    },
   },
-  formWrapper: {
-    width: '50rem',
+  center: {
+    height: '100vh',
     textAlign: 'center',
   },
   formTitle: {

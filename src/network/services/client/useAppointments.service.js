@@ -12,12 +12,8 @@ const useAppointmentsService = () => {
   };
 
   return useQuery('GET_APPOINTMENTS', request, {
-    onSuccess: data => {
-      console.log('Data: ', data);
-    },
-    onError: error => {
-      console.dir(error);
-    },
+    onSuccess: data => {},
+    onError: error => {},
   });
 };
 

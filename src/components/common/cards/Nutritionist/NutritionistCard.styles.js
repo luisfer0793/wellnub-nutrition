@@ -31,9 +31,6 @@ export const useStyles = createStyles((theme, { banner }) => ({
     paddingRight: theme.spacing.md,
     paddingBottom: '2rem',
   },
-  title: {
-    color: theme.colors.dark[9],
-  },
   footer: {
     backgroundColor: theme.colors.wellnubGreen[8],
     color: theme.colors.gray[1],

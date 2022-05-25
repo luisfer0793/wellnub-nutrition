@@ -1,5 +1,6 @@
-import { forwardRef } from 'react';
+import { forwardRef, Fragment, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { useScrollLock, useToggle } from '@mantine/hooks';
 import {
   Button,
   Container,
@@ -8,12 +9,18 @@ import {
   Space,
   Text,
   Header as LayoutHeader,
+  MediaQuery,
+  Burger,
 } from '@mantine/core';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBell } from '@fortawesome/free-solid-svg-icons';
 
-import { useAnalyticsEventTracker, useAuthentication } from 'hooks';
+import {
+  useAnalyticsEventTracker,
+  useAuthentication,
+  useNavbarLayout,
+} from 'hooks';
 
 import AvatarDropdown from '../../common/dropdowns/Avatar/AvatarDropdown.component';
 
@@ -28,14 +35,17 @@ const PUBLIC_LINKS = [
 ];
 
 const Header = forwardRef((_, ref) => {
+  const [isOpen, toggleHandler] = useToggle(false, [true, false]);
+
+  const { isVisible, handleToggle } = useNavbarLayout();
+
   const { eventTracker } = useAnalyticsEventTracker('Authentication');
 
   const { isAuthenticated, user } = useAuthentication();
 
-  const {
-    classes: { header, flex, logo, spaceBetween, list, listItem, asLink },
-    cx,
-  } = useStyles();
+  const [, setScrollLocked] = useScrollLock();
+
+  const { classes, cx } = useStyles({ isOpen, isAuthenticated });
 
   const rootPath = !isAuthenticated
     ? '/'
@@ -52,62 +62,166 @@ const Header = forwardRef((_, ref) => {
     eventTracker('LoginClick', 'LoginClick');
   };
 
+  const onToggleHandler = () => {
+    toggleHandler();
+  };
+
+  useEffect(() => {
+    setScrollLocked(isOpen);
+  }, [isOpen, setScrollLocked]);
+
   return (
-    <LayoutHeader height={70} ref={ref} className={header}>
-      <Container fluid px={70}>
-        <div className={flex}>
-          <Text className={logo} weight={700} component={Link} to={rootPath}>
-            Wellnub
-          </Text>
-          <div className={spaceBetween}>
-            <ul className={cx(flex, list)}>
-              {PUBLIC_LINKS.map(link => (
-                <li key={link.id} className={listItem}>
-                  <Text
-                    className={asLink}
-                    component={Link}
-                    to={link.to}
-                    size="sm"
-                  >
-                    {link.label}
-                  </Text>
-                </li>
-              ))}
-            </ul>
+    <Fragment>
+      <LayoutHeader height={70} ref={ref} className={classes.header}>
+        <Container fluid className={classes.container}>
+          <div className={classes.flex}>
             {isAuthenticated && (
-              <Group spacing="lg">
-                <Indicator
-                  inline
-                  size={12}
-                  position="bottom-end"
-                  color="red"
-                  withBorder
-                >
-                  <FontAwesomeIcon icon={faBell} />
-                </Indicator>
-                <AvatarDropdown />
-              </Group>
+              <>
+                <MediaQuery smallerThan="xs" styles={{ display: 'none' }}>
+                  <Text
+                    to={rootPath}
+                    weight={700}
+                    component={Link}
+                    className={classes.logo}
+                  >
+                    Wellnub
+                  </Text>
+                </MediaQuery>
+                <MediaQuery largerThan="xs" styles={{ display: 'none' }}>
+                  <Burger
+                    opened={isVisible}
+                    onClick={handleToggle}
+                    sx={{ marginRight: 'auto' }}
+                  />
+                </MediaQuery>
+                <Group spacing="lg">
+                  <Indicator
+                    inline
+                    size={12}
+                    position="bottom-end"
+                    color="red"
+                    withBorder
+                  >
+                    <FontAwesomeIcon icon={faBell} />
+                  </Indicator>
+                  <AvatarDropdown />
+                </Group>
+              </>
             )}
             {!isAuthenticated && (
-              <div className={flex}>
-                <Button
+              <>
+                <Text
+                  to={rootPath}
+                  weight={700}
                   component={Link}
-                  to="login"
-                  color="green"
-                  onClick={onLoginClickHandler}
+                  className={classes.logo}
                 >
-                  Iniciar sesión
-                </Button>
-                <Space w="sm" />
-                <Button variant="subtle" color="green">
-                  Registrarse
-                </Button>
-              </div>
+                  Wellnub
+                </Text>
+                <MediaQuery largerThan="sm" styles={{ display: 'none' }}>
+                  <Burger
+                    opened={isOpen}
+                    onClick={onToggleHandler}
+                    sx={{ marginLeft: 'auto' }}
+                  />
+                </MediaQuery>
+                <MediaQuery smallerThan="xs" styles={{ display: 'none' }}>
+                  <div className={classes.spaceBetween}>
+                    <ul className={cx(classes.flex, classes.list)}>
+                      {PUBLIC_LINKS.map(link => (
+                        <li key={link.id} className={classes.listItem}>
+                          <Text
+                            className={classes.asLink}
+                            component={Link}
+                            to={link.to}
+                            size="sm"
+                          >
+                            {link.label}
+                          </Text>
+                        </li>
+                      ))}
+                    </ul>
+                    <div className={classes.flex}>
+                      <Button
+                        component={Link}
+                        to="login"
+                        color="green"
+                        onClick={onLoginClickHandler}
+                      >
+                        Iniciar sesión
+                      </Button>
+                      <Space w="sm" />
+                      <Button variant="subtle" color="green">
+                        Registrarse
+                      </Button>
+                    </div>
+                  </div>
+                </MediaQuery>
+              </>
             )}
           </div>
-        </div>
-      </Container>
-    </LayoutHeader>
+        </Container>
+      </LayoutHeader>
+
+      {/* ---- RESPONSIVE MENU ---- */}
+      <MediaQuery largerThan="xs" styles={{ display: 'none' }}>
+        <aside className={classes.sidebar}>
+          <nav>
+            <ul className={classes.list}>
+              <li className={classes.sidebarItem}>
+                <Text
+                  className={classes.asLink}
+                  component={Link}
+                  to="nutriologo"
+                  size="sm"
+                  onClick={onToggleHandler}
+                >
+                  Nutriologos
+                </Text>
+              </li>
+              <li className={classes.sidebarItem}>
+                <Text
+                  className={classes.asLink}
+                  component={Link}
+                  to="dentistas"
+                  size="sm"
+                  onClick={onToggleHandler}
+                >
+                  Dentistas
+                </Text>
+              </li>
+              <li className={classes.sidebarItem}>
+                <Text
+                  className={classes.asLink}
+                  component={Link}
+                  to="partner"
+                  size="sm"
+                  onClick={onToggleHandler}
+                >
+                  Partners
+                </Text>
+              </li>
+              <li className={classes.sidebarItem}>
+                <Text
+                  className={classes.asLink}
+                  component={Link}
+                  to="cliente"
+                  size="sm"
+                  onClick={onToggleHandler}
+                >
+                  Clientes
+                </Text>
+              </li>
+            </ul>
+          </nav>
+          <footer>
+            <Text component="p" size="sm">
+              &copy; 2022. All rights reserved
+            </Text>
+          </footer>
+        </aside>
+      </MediaQuery>
+    </Fragment>
   );
 });
 

@@ -41,7 +41,12 @@ root.render(
             theme={theme}
             styles={overrides}
           >
-            <ModalsProvider modals={modals}>
+            <ModalsProvider
+              modals={modals}
+              modalProps={{
+                transition: 'slide-up',
+              }}
+            >
               <NotificationsProvider autoClose={6000}>
                 <Global styles={globalStyles} />
                 <App />

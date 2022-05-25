@@ -80,20 +80,6 @@ const AvatarDropdown = () => {
       >
         Cerrar sesión
       </Menu.Item>
-      <Divider />
-      <Menu.Item disabled>
-        <Text size="sm" weight={600}>
-          Perfil de:{' '}
-          {
-            {
-              [ROLES.ADMIN]: 'Admin',
-              [ROLES.CLIENT]: 'Cliente',
-              [ROLES.PARTNER]: 'Partner',
-              [ROLES.NUTRITIONIST]: 'Nutriólogo',
-            }[user.role]
-          }
-        </Text>
-      </Menu.Item>
     </Menu>
   );
 };

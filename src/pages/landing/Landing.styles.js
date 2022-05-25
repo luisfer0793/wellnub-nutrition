@@ -11,17 +11,24 @@ export const useStyles = createStyles(theme => ({
   section: {
     paddingTop: '10rem',
     paddingBottom: '10rem',
+    overflow: 'hidden',
+    [theme.fn.smallerThan('xs')]: {
+      textAlign: 'center',
+      paddingTop: '5rem',
+      paddingBottom: '5rem',
+    },
   },
   title: {
     fontSize: '5rem',
     width: '20ch',
+    [theme.fn.smallerThan('xs')]: {
+      fontSize: '3.2rem !important',
+      width: 'auto',
+    },
   },
   subtitle: {
     fontSize: '3.2rem',
     marginBottom: '4rem',
-  },
-  black: {
-    color: theme.colors.dark[9],
   },
   gray: {
     color: theme.colors.dark[3],
@@ -45,20 +52,17 @@ export const useStyles = createStyles(theme => ({
   heroDescription: {
     maxWidth: '70ch',
   },
-  grid: {
-    display: 'grid',
-    gap: '1rem',
-    gridTemplateColumns: 'repeat(3, minmax(40rem, 1fr))',
+  gridImageWrapper: {
+    width: '80%',
   },
   gridItem: {
-    maxWidth: '35rem',
-    justifySelf: 'center',
+    textAlign: 'center',
   },
   gridImage: {
-    transition: 'transform linear 100ms',
-    '&:hover': {
-      transform: 'translateX(.5rem)',
-    },
+    display: 'inline-block',
+    width: '80%',
+    marginLeft: 'auto',
+    marginRight: 'auto',
   },
   gridItemTitle: {
     marginTop: theme.spacing.md,
@@ -84,6 +88,9 @@ export const useStyles = createStyles(theme => ({
   stepperWrapper: {
     marginTop: theme.spacing.xl,
     maxWidth: '40%',
+    [theme.fn.smallerThan('xs')]: {
+      maxWidth: '100%',
+    },
   },
   stepperControlsWrapper: {
     marginBottom: theme.spacing.lg,

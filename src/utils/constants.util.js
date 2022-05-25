@@ -1,4 +1,4 @@
-export const API_BASE_URL = 'http://localhost:8080';
+export const API_BASE_URL = 'https://dev.api.wellnub.com';
 
 export const NUTRITIONISTS_META_TAGS = [
   {
@@ -97,3 +97,48 @@ export const REGISTERED_USERS = [
       'https://images.unsplash.com/photo-1621592484082-2d05b1290d7a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NjF8fHVzZXJ8ZW58MHx8MHx8&auto=format&fit=crop&w=900&q=60',
   },
 ];
+
+export const NAVBAR_ADMIN_LINKS = [
+  {
+    id: 'navbar-admin-link-1',
+    to: 'calendario',
+    label: 'Mi Calendario admin',
+    icon: 'faCalendarCheck',
+  },
+  {
+    id: 'navbar-admin-link-2',
+    to: 'pases',
+    label: 'Mis Pases admin',
+    icon: 'faTicketSimple',
+  },
+  {
+    id: 'navbar-admin-link-3',
+    to: 'analisis-corporal',
+    label: 'Análisis Corporal admin',
+    icon: 'faWeightScale',
+  },
+];
+export const NAVBAR_CLIENT_LINKS = [
+  {
+    to: 'calendario',
+    label: 'Mi Calendario',
+    icon: 'faCalendarCheck',
+  },
+  {
+    to: 'pases',
+    label: 'Mis Pases',
+    icon: 'faTicketSimple',
+  },
+  {
+    to: 'analisis-corporal',
+    label: 'Análisis Corporal',
+    icon: 'faWeightScale',
+  },
+];
+
+export const CALENDAR_EVENT_TYPES = {
+  APPOINTMENT: 'CITA_NUTRIOLOGO',
+  ANALYSIS: 'ANALISIS_INBODY',
+  FREE: 'TIEMPO_LIBRE',
+  RANDOM: 'ALEATORIO',
+};

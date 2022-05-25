@@ -1,6 +1,4 @@
 import { useState } from 'react';
-import { Swiper, SwiperSlide } from 'swiper/react';
-
 import {
   Button,
   Container,
@@ -18,15 +16,11 @@ import {
   faArrowLeftLong,
 } from '@fortawesome/free-solid-svg-icons';
 
-import { TestimonialCard, WithHelmet } from 'components';
+import { TestimonialCarousel, WithHelmet } from 'components';
 
 import { LANDING_PAGE_META_TAGS } from 'utils/constants.util';
 
 import { useStepperStyles, useStyles } from './Landing.styles';
-
-import 'swiper/css';
-import 'swiper/css/navigation';
-import 'swiper/css/pagination';
 
 const gridItems = [
   {
@@ -72,30 +66,8 @@ const GridItem = ({ data }) => {
       <Title order={4} className={cx(classes.gridItemTitle, classes.black)}>
         {data.title}
       </Title>
-      <Text size="sm">{data.description}</Text>
+      <Text component="p">{data.description}</Text>
     </article>
-  );
-};
-
-const TestimonialCarousel = ({ testimonials }) => {
-  return (
-    <Swiper loop centeredSlides spaceBetween={50} slidesPerView={3}>
-      <SwiperSlide>
-        <TestimonialCard />
-      </SwiperSlide>
-      <SwiperSlide>
-        <TestimonialCard />
-      </SwiperSlide>
-      <SwiperSlide>
-        <TestimonialCard />
-      </SwiperSlide>
-      <SwiperSlide>
-        <TestimonialCard />
-      </SwiperSlide>
-      <SwiperSlide>
-        <TestimonialCard />
-      </SwiperSlide>
-    </Swiper>
   );
 };
 
@@ -122,12 +94,12 @@ const LandingPage = () => {
       <header className={cx(classes.section, classes.hero)}>
         <Container size="xl">
           <div className={classes.marginBottomLg}>
-            <Title order={1} className={cx(classes.title, classes.black)}>
-              Lleva Tu Consulta De Nutrición Al Siguiente Nivel
+            <Title order={1} className={cx(classes.title)}>
+              Lleva Tu Consulta De Salud Al Siguiente Nivel
             </Title>
           </div>
           <div className={classes.marginBottomLg}>
-            <Text className={classes.heroDescription}>
+            <Text className={classes.heroDescription} component="p">
               Las herramientas más efectivas en la palma de tu mano, con un
               simple clic. Monitorea de cerca el éxito de tu consulta
               nutricional, gana mayor credibilidad, fidelidad y nuevos pacientes
@@ -152,11 +124,7 @@ const LandingPage = () => {
       </header>
       <section className={cx(classes.section, classes.center)}>
         <Container size="xl">
-          <Title
-            order={2}
-            align="center"
-            className={cx(classes.black, classes.subtitle)}
-          >
+          <Title order={2} align="center" className={classes.subtitle}>
             Prueba la app que te traerá más pacientes a través de las mejores
             herramientas para tu consulta
           </Title>
@@ -168,34 +136,28 @@ const LandingPage = () => {
           </Button>
         </Container>
       </section>
-      <section className={cx(classes.section, classes.center, classes.bgGray)}>
+      <section className={cx(classes.section, classes.bgGray)}>
         <Container size="xl">
-          <Title
-            order={2}
-            align="center"
-            className={cx(classes.black, classes.subtitle)}
-          >
+          <Title order={2} align="center" className={classes.subtitle}>
             Tenemos las herramientas que están evolucionando la nutrición
           </Title>
-          <div className={classes.grid}>
+          <Grid gutter="xl">
             {gridItems.map(item => (
-              <GridItem data={item} key={item.id} />
+              <Grid.Col xs={12} sm={4} key={item.id}>
+                <GridItem data={item} />
+              </Grid.Col>
             ))}
-          </div>
+          </Grid>
         </Container>
       </section>
-      <section className={cx(classes.section, classes.black)}>
+      <section className={cx(classes.section)}>
         <Container size="xl">
-          <Title
-            order={2}
-            align="center"
-            className={cx(classes.black, classes.subtitle, classes.center)}
-          >
+          <Title order={2} align="center" className={classes.subtitle}>
             Tres sencillos pasos para medir la composición corporal de tus
             pacientes con nuestra red
           </Title>
           <Grid>
-            <Grid.Col span={5}>
+            <Grid.Col xs={12} sm={5}>
               <Text weight={700} className={classes.stepNumber}>
                 01.
               </Text>
@@ -208,7 +170,7 @@ const LandingPage = () => {
                 la locación Wellnub que elija
               </Text>
             </Grid.Col>
-            <Grid.Col span={7}>
+            <Grid.Col xs={12} sm={6}>
               <Image src="https://images.unsplash.com/photo-1554415707-6e8cfc93fe23?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=3540&q=80" />
             </Grid.Col>
           </Grid>
@@ -241,18 +203,12 @@ const LandingPage = () => {
           </div>
         </Container>
       </section>
-      <section className={cx(classes.section, classes.center, classes.bgGray)}>
+      <section className={cx(classes.section, classes.bgGray)}>
         <Container size="xl">
-          <Title
-            order={2}
-            align="center"
-            className={cx(classes.black, classes.subtitle)}
-          >
+          <Title order={2} align="center" className={classes.subtitle}>
             Nuestros nutriólogos opinan
           </Title>
-          <div>
-            <TestimonialCarousel />
-          </div>
+          <TestimonialCarousel />
         </Container>
       </section>
     </WithHelmet>

@@ -15,6 +15,8 @@ import storage from 'redux-persist/lib/storage';
 
 import { AuthenticationReducer } from './slices/authentication/authentication.slice';
 import { NutritionistsReducer } from './slices/nutritionists/nutritionists.slice';
+import { TestimonialsReducer } from './slices/testimonials/testimonials.slice';
+import { LayoutReducer } from './slices/layout/layout.slice';
 
 const persistConfig = {
   key: 'root',
@@ -25,6 +27,8 @@ const persistConfig = {
 const reducer = combineReducers({
   authentication: AuthenticationReducer,
   nutritionists: NutritionistsReducer,
+  testimonials: TestimonialsReducer,
+  layout: LayoutReducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, reducer);

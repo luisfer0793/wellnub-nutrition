@@ -1,75 +1,83 @@
 import { forwardRef } from 'react';
-import { Container, Grid, Text, Title } from '@mantine/core';
+import { Container, Text, Title } from '@mantine/core';
 import { useStyles } from './Footer.styles';
+import { Link } from 'react-router-dom';
+import { nanoid } from '@reduxjs/toolkit';
+
+const LINKS = {
+  company: [
+    { to: '/aviso-de-privacidad', label: 'Aviso de privacidad' },
+    { to: '/terminos-y-condiciones', label: 'Términos y condiciones' },
+  ],
+  support: [
+    { to: '/preguntas-frecuentes', label: 'FAQ' },
+    { to: '/oportunidades', label: 'Trabaja con nosotros' },
+  ],
+  media: [
+    { to: '/facebook', label: 'Facebook' },
+    { to: '/instagram', label: 'Instagram' },
+  ],
+};
 
 const Footer = forwardRef((_, ref) => {
-  const { classes, cx } = useStyles();
+  const { classes } = useStyles();
 
   return (
-    <footer className={cx(classes.footer, classes.section)} ref={ref}>
+    <footer className={classes.footer} ref={ref}>
       <Container size="xl">
-        <Grid>
-          <Grid.Col span={3}>
-            <Title order={4} className={classes.title}>
+        <div className={classes.grid}>
+          <section className={classes.areaCopyright}>
+            <Title order={5} className={classes.title}>
               WELLNUB
             </Title>
-            <Text size="sm" className={classes.text}>
+            <Text className={classes.text}>
               Wellnub e InBody&reg; son una marca registrada. Todos los derechos
               reservados. 2022
             </Text>
-          </Grid.Col>
-          <Grid.Col span={3}>
-            <Title order={5} className={classes.title}>
+          </section>
+          <section className={classes.areaCompany}>
+            <Title order={6} className={classes.title}>
               Empresa
             </Title>
             <ul className={classes.list}>
-              <li className={classes.listItem}>
-                <Text size="sm" className={classes.text}>
-                  Aviso de privacidad
-                </Text>
-              </li>
-              <li className={classes.listItem}>
-                <Text size="sm" className={classes.text}>
-                  Términos y condiciones
-                </Text>
-              </li>
+              {LINKS.company.map(link => (
+                <li className={classes.listItem} key={nanoid()}>
+                  <Text className={classes.text} component={Link} to={link.to}>
+                    {link.label}
+                  </Text>
+                </li>
+              ))}
             </ul>
-          </Grid.Col>
-          <Grid.Col span={3}>
-            <Title order={5} className={classes.title}>
+          </section>
+          <section className={classes.areaSupport}>
+            <Title order={6} className={classes.title}>
               Soporte
             </Title>
             <ul className={classes.list}>
-              <li className={classes.listItem}>
-                <Text size="sm" className={classes.text}>
-                  FAQ
-                </Text>
-              </li>
-              <li className={classes.listItem}>
-                <Text size="sm" className={classes.text}>
-                  Trabaja con nosotros
-                </Text>
-              </li>
+              {LINKS.support.map(link => (
+                <li className={classes.listItem} key={nanoid()}>
+                  <Text className={classes.text} component={Link} to={link.to}>
+                    {link.label}
+                  </Text>
+                </li>
+              ))}
             </ul>
-          </Grid.Col>
-          <Grid.Col span={3}>
-            <Title order={5} className={classes.title}>
+          </section>
+          <section className={classes.areaMedia}>
+            <Title order={6} className={classes.title}>
               Social
             </Title>
             <ul className={classes.list}>
-              <li className={classes.listItem}>
-                <Text size="sm" className={classes.text}>
-                  Instagram
-                </Text>
-              </li>
-              <li className={classes.listItem}>
-                <Text size="sm" className={classes.text}>
-                  Facebook
-                </Text>
-              </li>
+              {LINKS.media.map(link => (
+                <li className={classes.listItem} key={nanoid()}>
+                  <Text className={classes.text} component={Link} to={link.to}>
+                    {link.label}
+                  </Text>
+                </li>
+              ))}
             </ul>
-          </Grid.Col>
-        </Grid>
+          </section>
+        </div>
       </Container>
     </footer>
   );
