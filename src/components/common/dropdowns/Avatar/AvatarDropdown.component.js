@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { Avatar, Divider, Menu, Text } from '@mantine/core';
+import { Avatar, Divider, Menu } from '@mantine/core';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
@@ -10,8 +10,6 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 
 import { useAuthentication } from 'hooks';
-
-import { ROLES } from 'utils/constants.util';
 
 import { useStyles } from './AvatarDropdown.styles';
 

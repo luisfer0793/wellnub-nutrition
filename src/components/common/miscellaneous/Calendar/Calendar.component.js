@@ -1,12 +1,9 @@
-import { Fragment } from 'react';
 import { format, parse, startOfWeek, getDay } from 'date-fns';
 import { Calendar, dateFnsLocalizer } from 'react-big-calendar';
-import { Text, Title } from '@mantine/core';
 import { useModals } from '@mantine/modals';
 import { es } from 'date-fns/locale';
 
 import CalendarEventWrapper from './CalendarEventWrapper/CalendarEventWrapper.component';
-import CalendarCellWrapper from './CalendarCellWrapper/CalendarCellWrapper.component';
 
 import { CALENDAR_EVENT_TYPES } from 'utils/constants.util';
 

@@ -1,8 +1,8 @@
-import { Fragment, useEffect } from 'react';
+import { useEffect } from 'react';
 import ReactGA from 'react-ga4';
 import { useLocation } from 'react-router-dom';
 
-import { useElementSize } from '@mantine/hooks';
+import { useElementSize, useScrollIntoView } from '@mantine/hooks';
 
 import { Footer, Header, RootRoutes } from 'components';
 
@@ -12,6 +12,8 @@ import { useStyles } from './App.styles';
 
 function App() {
   const { isAuthenticated } = useAuthentication();
+
+  const { scrollIntoView, targetRef } = useScrollIntoView();
 
   const location = useLocation();
 
@@ -31,10 +33,11 @@ function App() {
       hitType: 'pageview',
       page: location.pathname + location.search,
     });
-  }, [location]);
+    scrollIntoView();
+  }, [location, scrollIntoView]);
 
   return (
-    <Fragment>
+    <div ref={targetRef}>
       {location.pathname !== '/login' && !isAuthenticated && (
         <Header ref={headerRef} />
       )}
@@ -44,7 +47,7 @@ function App() {
       {location.pathname !== '/login' && !isAuthenticated && (
         <Footer ref={footerRef} />
       )}
-    </Fragment>
+    </div>
   );
 }
 
