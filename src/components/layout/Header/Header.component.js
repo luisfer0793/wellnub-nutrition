@@ -11,6 +11,8 @@ import {
   Header as LayoutHeader,
   MediaQuery,
   Burger,
+  Stack,
+  Divider,
 } from '@mantine/core';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -172,7 +174,7 @@ const Header = forwardRef((_, ref) => {
                 <Text
                   className={classes.asLink}
                   component={Link}
-                  to="nutriologo"
+                  to="nutriologos"
                   size="sm"
                   onClick={onToggleHandler}
                 >
@@ -194,7 +196,7 @@ const Header = forwardRef((_, ref) => {
                 <Text
                   className={classes.asLink}
                   component={Link}
-                  to="partner"
+                  to="partners"
                   size="sm"
                   onClick={onToggleHandler}
                 >
@@ -205,7 +207,7 @@ const Header = forwardRef((_, ref) => {
                 <Text
                   className={classes.asLink}
                   component={Link}
-                  to="cliente"
+                  to="clientes"
                   size="sm"
                   onClick={onToggleHandler}
                 >
@@ -215,7 +217,24 @@ const Header = forwardRef((_, ref) => {
             </ul>
           </nav>
           <footer>
-            <Text component="p" size="sm">
+            <Stack>
+              <Button fullWidth color="green" component={Link} to="/login">
+                Iniciar sesión
+              </Button>
+              <Button
+                fullWidth
+                color="green"
+                variant="outline"
+                component={Link}
+                to="/registrarse"
+              >
+                Registrarse
+              </Button>
+            </Stack>
+            <br />
+            <Divider />
+            <br />
+            <Text component="p" className={classes.copyright}>
               &copy; 2022. All rights reserved
             </Text>
           </footer>

@@ -1,4 +1,4 @@
-import { forwardRef } from 'react';
+import { forwardRef, Fragment } from 'react';
 import { nanoid } from '@reduxjs/toolkit';
 import { Divider, ScrollArea, Stack, Title } from '@mantine/core';
 import { useNavbarLayout } from 'hooks';
@@ -11,28 +11,34 @@ const Navbar = (_, ref) => {
   const { isVisible } = useNavbarLayout();
 
   const {
-    classes: { linksWrapper, navbar, sectionTitle, section, grow },
+    classes: { linksWrapper, navbar, sectionTitle, section, grow, divider },
     cx,
   } = useStyles({ isVisible });
 
   const ROLE = 'CLIENT';
+
+  const LINKS = CONSTANTS[`NAVBAR_${ROLE}_LINKS`];
 
   return (
     <nav className={navbar} ref={ref}>
       <section className={cx(section)}>
         <UserProfileCard />
       </section>
-      <Divider />
+      <Divider className={divider} />
       <ScrollArea scrollbarSize={4} offsetScrollbars>
         <section className={cx(section, grow)}>
-          <Title order={5} className={sectionTitle}>
-            General
-          </Title>
-          <Stack spacing="xs" className={linksWrapper}>
-            {CONSTANTS[`NAVBAR_${ROLE}_LINKS`].map(link => (
-              <NavbarLink key={nanoid()} link={link} />
-            ))}
-          </Stack>
+          {Object.keys(LINKS).map(key => (
+            <Fragment key={nanoid()}>
+              <Title order={5} className={sectionTitle}>
+                {key}
+              </Title>
+              <Stack spacing="xs" className={linksWrapper}>
+                {LINKS[key].map(link => (
+                  <NavbarLink key={nanoid()} link={link} />
+                ))}
+              </Stack>
+            </Fragment>
+          ))}
         </section>
       </ScrollArea>
     </nav>

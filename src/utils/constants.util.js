@@ -118,23 +118,39 @@ export const NAVBAR_ADMIN_LINKS = [
     icon: 'faWeightScale',
   },
 ];
-export const NAVBAR_CLIENT_LINKS = [
-  {
-    to: 'calendario',
-    label: 'Mi Calendario',
-    icon: 'faCalendarCheck',
-  },
-  {
-    to: 'pases',
-    label: 'Mis Pases',
-    icon: 'faTicketSimple',
-  },
-  {
-    to: 'analisis-corporal',
-    label: 'Análisis Corporal',
-    icon: 'faWeightScale',
-  },
-];
+export const NAVBAR_CLIENT_LINKS = {
+  Salud: [
+    {
+      to: 'progreso',
+      label: 'Progreso',
+      icon: 'faChalkboardUser',
+    },
+    {
+      to: 'analisis-corporal',
+      label: 'Análisis Corporal',
+      icon: 'faWeightScale',
+    },
+  ],
+  Market: [
+    {
+      to: 'compras',
+      label: 'Compras y suscripciones',
+      icon: 'faStore',
+    },
+    {
+      to: 'promociones',
+      label: 'Promociones',
+      icon: 'faMoneyBill',
+    },
+  ],
+  Apps: [
+    {
+      to: 'calendario',
+      label: 'Mi Calendario',
+      icon: 'faCalendarCheck',
+    },
+  ],
+};
 
 export const CALENDAR_EVENT_TYPES = {
   APPOINTMENT: 'CITA_NUTRIOLOGO',

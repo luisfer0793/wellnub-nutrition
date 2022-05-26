@@ -108,9 +108,15 @@ const LandingPage = () => {
           </div>
           <div className={classes.marginBottomLg}>
             <ul className={classes.heroList}>
-              <li>Servicio las 24 horas</li>
-              <li>Una enorme lista de profesionales</li>
-              <li>Resultados al instante</li>
+              <li>
+                <Text component="p">Servicio las 24 horas</Text>
+              </li>
+              <li>
+                <Text component="p">Una enorme lista de profesionales</Text>
+              </li>
+              <li>
+                <Text component="p">Resultados al instante</Text>
+              </li>
             </ul>
           </div>
           <div>

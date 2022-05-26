@@ -1,8 +1,8 @@
 import { useAuthentication } from 'hooks';
-import { useStyles } from './UserProfileCard.styles';
 import { Avatar, Text, Title } from '@mantine/core';
-import { ROLES } from '../../../../utils/constants.util';
 import { useMediaQuery } from '@mantine/hooks';
+import { ROLES } from 'utils/constants.util';
+import { useStyles } from './UserProfileCard.styles';
 
 const UserProfileCard = () => {
   const { user } = useAuthentication();
@@ -10,24 +10,24 @@ const UserProfileCard = () => {
   const isResponsive = useMediaQuery('(max-width: 576px)');
 
   const {
-    classes: { card, description, infoWrapper, name, avatar },
+    classes: { card, description, infoWrapper, name, avatar, avatarWrapper },
   } = useStyles();
 
   return (
     <div className={card}>
-      <Avatar
-        src={user.image}
-        alt={user.name}
-        radius="50%"
-        size={isResponsive ? 'md' : 'lg'}
-        className={avatar}
-      />
+      <div className={avatarWrapper}>
+        <Avatar
+          src={user.image}
+          alt={user.name}
+          size={isResponsive ? 'md' : 'lg'}
+          className={avatar}
+        />
+      </div>
       <div className={infoWrapper}>
         <Title order={5} className={name}>
           {user.name}
         </Title>
         <Text component="p" className={description}>
-          Perfil de{' '}
           {
             {
               [ROLES.CLIENT]: 'Cliente',
@@ -35,7 +35,8 @@ const UserProfileCard = () => {
               [ROLES.NUTRITIONIST]: 'Nutriólogo',
               [ROLES.ADMIN]: 'Administrador',
             }[user.role]
-          }
+          }{' '}
+          Wellnub
         </Text>
       </div>
     </div>

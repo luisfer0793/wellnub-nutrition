@@ -30,6 +30,10 @@ export const useStyles = createStyles((theme, { isOpen, isAuthenticated }) => ({
     display: 'flex',
     alignItems: 'center',
   },
+  copyright: {
+    textAlign: 'center',
+    fontSize: '1.3rem !important',
+  },
   spaceBetween: {
     display: 'flex',
     flexGrow: 1,

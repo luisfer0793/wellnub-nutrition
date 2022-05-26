@@ -7,12 +7,11 @@ export const useStyles = createStyles((theme, { isVisible }) => ({
     flexDirection: 'column',
     top: 0,
     left: 0,
-    width: '30rem',
+    width: '27rem',
     height: '100vh',
     zIndex: 250,
-    borderRight: `.1rem solid ${theme.colors.gray[2]}`,
-    backgroundColor: 'white',
-    transition: 'transform linear 250ms 150ms',
+    backgroundColor: theme.colors.wellnubGreen[8],
+    transition: 'transform linear 150ms 150ms',
     [theme.fn.smallerThan('xs')]: {
       width: '80%',
       transform: isVisible ? 'translateX(0)' : 'translateX(-100%)',
@@ -20,6 +19,9 @@ export const useStyles = createStyles((theme, { isVisible }) => ({
   },
   section: {
     margin: theme.spacing.md,
+  },
+  divider: {
+    borderTopColor: theme.colors.wellnubGreen[6],
   },
   grow: {
     flexGrow: 1,
@@ -32,7 +34,8 @@ export const useStyles = createStyles((theme, { isVisible }) => ({
     paddingBottom: theme.spacing.sm,
   },
   sectionTitle: {
-    paddingLeft: theme.spacing.lg,
+    paddingLeft: theme.spacing.xs,
+    color: theme.colors.gray[0],
     [theme.fn.smallerThan('xs')]: {
       fontSize: '1.5rem',
       paddingLeft: 0,

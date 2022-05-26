@@ -2,24 +2,21 @@ import { createStyles } from '@mantine/core';
 
 export const useStyles = createStyles(theme => ({
   menuItem: {
-    fontWeight: 500,
     fontSize: '1.4rem',
     position: 'relative',
     paddingTop: theme.spacing.xs,
     paddingBottom: theme.spacing.xs,
-    paddingLeft: theme.spacing.lg,
+    paddingLeft: theme.spacing.xs,
     textDecoration: 'none',
     transition: 'background-color linear 100ms, color linear 100ms',
-    color: theme.colors.dark[5],
+    color: theme.colors.gray[5],
     [theme.fn.smallerThan('xs')]: {
       fontSize: '1.4rem',
-      paddingLeft: 0,
       paddingBottom: '.5rem',
       paddingTop: '.5rem',
     },
     '&:hover': {
-      color: theme.colors.green[9],
-      backgroundColor: theme.colors.lime[0],
+      color: theme.colors.green[4],
     },
     '&::before': {
       display: 'none',
@@ -29,12 +26,11 @@ export const useStyles = createStyles(theme => ({
       content: "''",
       height: '100%',
       width: '.2rem',
-      backgroundColor: theme.colors.green[9],
+      backgroundColor: theme.colors.green[4],
     },
   },
   active: {
-    color: theme.colors.green[9],
-    backgroundColor: theme.colors.lime[0],
+    color: theme.colors.green[4],
     '&::before': {
       display: 'block',
     },
