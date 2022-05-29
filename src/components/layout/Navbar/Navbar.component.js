@@ -1,4 +1,5 @@
 import { forwardRef, Fragment } from 'react';
+import { motion } from 'framer-motion';
 import { nanoid } from '@reduxjs/toolkit';
 import { Divider, ScrollArea, Stack, Title } from '@mantine/core';
 import { useNavbarLayout } from 'hooks';
@@ -13,14 +14,18 @@ const Navbar = (_, ref) => {
   const {
     classes: { linksWrapper, navbar, sectionTitle, section, grow, divider },
     cx,
-  } = useStyles({ isVisible });
+  } = useStyles();
 
   const ROLE = 'CLIENT';
 
   const LINKS = CONSTANTS[`NAVBAR_${ROLE}_LINKS`];
 
   return (
-    <nav className={navbar} ref={ref}>
+    <motion.nav
+      ref={ref}
+      className={navbar}
+      animate={{ x: isVisible ? 0 : '-100%' }}
+    >
       <section className={cx(section)}>
         <UserProfileCard />
       </section>
@@ -41,7 +46,7 @@ const Navbar = (_, ref) => {
           ))}
         </section>
       </ScrollArea>
-    </nav>
+    </motion.nav>
   );
 };
 

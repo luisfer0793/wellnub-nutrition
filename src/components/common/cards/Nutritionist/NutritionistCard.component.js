@@ -41,11 +41,10 @@ const NutritionistCard = ({ nutritionist }) => {
   return (
     <article className={classes.card}>
       <div className={classes.infoWrapper}>
-        <header className={classes.header}></header>
+        <header className={classes.header} />
         <main className={classes.main}>
           <Avatar
             src={nutritionist.image}
-            size="xl"
             radius="50%"
             className={classes.avatar}
           />

@@ -1,20 +1,22 @@
 import { useQuery } from 'react-query';
+import { QUERY_KEYS } from 'utils/constants.util';
 import { useWellnubAPI } from 'hooks';
 
-const useAppointmentsService = () => {
+export const useAppointmentsQuery = () => {
   const wellnub = useWellnubAPI();
 
-  const request = async () => {
+  return async () => {
     const { data } = await wellnub.get(
       `/v1/client/inbodyPass?statusList=scheduled`,
     );
     return data;
   };
+};
 
-  return useQuery('GET_APPOINTMENTS', request, {
-    onSuccess: data => {},
-    onError: error => {},
-  });
+const useAppointmentsService = () => {
+  const query = useAppointmentsQuery();
+
+  return useQuery(QUERY_KEYS.CLIENT.GET_APPOINTMENTS, query);
 };
 
 export default useAppointmentsService;

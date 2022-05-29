@@ -119,6 +119,13 @@ export const NAVBAR_ADMIN_LINKS = [
   },
 ];
 export const NAVBAR_CLIENT_LINKS = {
+  General: [
+    {
+      to: 'dashboard',
+      label: 'Dashboard',
+      icon: 'faLaptop',
+    },
+  ],
   Salud: [
     {
       to: 'progreso',
@@ -157,4 +164,12 @@ export const CALENDAR_EVENT_TYPES = {
   ANALYSIS: 'ANALISIS_INBODY',
   FREE: 'TIEMPO_LIBRE',
   RANDOM: 'ALEATORIO',
+};
+
+// ---- REACT QUERY KEYS ----
+export const QUERY_KEYS = {
+  CLIENT: {
+    GET_APPOINTMENTS: 'GET_APPOINTMENTS',
+    GET_RECEIVED_PASSES: 'GET_RECEIVED_PASSES',
+  },
 };

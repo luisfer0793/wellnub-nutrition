@@ -1,6 +1,6 @@
 import { createStyles } from '@mantine/core';
 
-export const useStyles = createStyles((theme, { isVisible }) => ({
+export const useStyles = createStyles(theme => ({
   navbar: {
     position: 'fixed',
     display: 'flex',
@@ -12,10 +12,6 @@ export const useStyles = createStyles((theme, { isVisible }) => ({
     zIndex: 250,
     backgroundColor: theme.colors.wellnubGreen[8],
     transition: 'transform linear 150ms 150ms',
-    [theme.fn.smallerThan('xs')]: {
-      width: '80%',
-      transform: isVisible ? 'translateX(0)' : 'translateX(-100%)',
-    },
   },
   section: {
     margin: theme.spacing.md,

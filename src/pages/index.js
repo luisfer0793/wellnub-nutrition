@@ -12,3 +12,4 @@ export { default as NotFoundPage } from './notFound/notFound.page';
 export { default as ClientLandingPage } from './roles/client/Landing/ClientLanding.page';
 export { default as ClientCalendarPage } from './roles/client/Calendar/ClientCalendar.page';
 export { default as ClientPassesPage } from './roles/client/Passes/ClientPasses.page';
+export { default as ClientDashboardPage } from './roles/client/Dashboard/ClientDashboard.page';

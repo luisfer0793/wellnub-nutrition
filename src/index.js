@@ -4,6 +4,7 @@ import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
 import { QueryClientProvider, QueryClient } from 'react-query';
+import { ReactQueryDevtools } from 'react-query/devtools';
 
 import { MantineProvider, Global } from '@mantine/core';
 import { ModalsProvider } from '@mantine/modals';
@@ -50,6 +51,7 @@ root.render(
               <NotificationsProvider autoClose={6000}>
                 <Global styles={globalStyles} />
                 <App />
+                <ReactQueryDevtools initialIsOpen={false} />
               </NotificationsProvider>
             </ModalsProvider>
           </MantineProvider>

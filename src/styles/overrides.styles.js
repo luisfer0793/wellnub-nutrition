@@ -27,4 +27,9 @@ export const overrides = {
       },
     },
   }),
+  Paper: theme => ({
+    root: {
+      boxShadow: `0 1px 1px ${theme.colors.gray[5]},0 1px 1px ${theme.colors.gray[5]}`,
+    },
+  }),
 };
