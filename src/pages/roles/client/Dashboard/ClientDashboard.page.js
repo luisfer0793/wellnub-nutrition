@@ -15,8 +15,6 @@ const ClientDashboardPage = () => {
     data: { appointments },
   } = useDashboardData();
 
-  // const { classes, cx } = useStyles();
-
   if (isLoading) {
     return (
       <WithHelmet noLayout title={`${user.name} | Dashboard | Wellnub`}>

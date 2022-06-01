@@ -6,6 +6,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { useNavbarLayout } from 'hooks';
 import { default as Header } from '../Header/Header.component';
 import { default as Navbar } from '../Navbar/Navbar.component';
+import { ZINDEX } from 'utils/constants.util';
 import { useStyles } from './ApplicationShell.styles';
 
 const ApplicationShell = () => {
@@ -43,8 +44,9 @@ const ApplicationShell = () => {
             >
               <Overlay
                 color="#0b1015"
-                onClick={handleClose}
                 className={overlay}
+                onClick={handleClose}
+                zIndex={ZINDEX.OVERLAY}
               />
             </motion.div>
           )}

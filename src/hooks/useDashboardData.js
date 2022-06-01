@@ -13,6 +13,9 @@ const useDashboardData = () => {
     {
       queryKey: QUERY_KEYS.CLIENT.GET_APPOINTMENTS,
       queryFn: appointmentsQuery,
+      onSuccess: data => {
+        console.log(data);
+      },
     },
     {
       queryKey: QUERY_KEYS.CLIENT.GET_RECEIVED_PASSES,
@@ -20,9 +23,9 @@ const useDashboardData = () => {
     },
   ]);
 
-  const isLoading = results.map(result => result.isLoading).some(Boolean);
+  const isLoading = results.some(result => result.isLoading);
 
-  const isError = results.map(result => result.isError).some(Boolean);
+  const isError = results.some(result => result.isError);
 
   const data = {
     appointments: results[0].data,

@@ -1,13 +1,11 @@
 import { useMutation } from 'react-query';
 import { useNotification, useAuthentication, useWellnubAPI } from 'hooks';
 import { ROLES } from 'utils/constants.util';
-import { useNavigate } from 'react-router-dom';
 
 const useLogInService = () => {
   const wellnub = useWellnubAPI();
   const handleNotification = useNotification();
   const { handleLogin } = useAuthentication();
-  const navigate = useNavigate();
 
   const request = async payload => {
     const { data } = await wellnub.post('/v1/auth/login?role=client', payload);
@@ -17,7 +15,6 @@ const useLogInService = () => {
   return useMutation(request, {
     onSuccess: data => {
       const { token, user } = data;
-      navigate('/cliente', { replace: true });
       handleLogin({
         user: {
           id: user.id,

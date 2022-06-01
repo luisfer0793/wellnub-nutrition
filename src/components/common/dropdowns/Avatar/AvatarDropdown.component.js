@@ -17,7 +17,7 @@ const AvatarDropdown = () => {
   const { user, handleLogout } = useAuthentication();
 
   const {
-    classes: { icon, avatar },
+    classes: { icon, menu },
   } = useStyles();
 
   const onLogoutClickHandler = () => {
@@ -27,19 +27,14 @@ const AvatarDropdown = () => {
   return (
     <Menu
       withArrow
+      placement="end"
+      shadow="lg"
+      className={menu}
       control={
-        <Avatar
-          color="green"
-          radius="xl"
-          size="md"
-          src={user.image}
-          className={avatar}
-        >
+        <Avatar color="green" radius="xl" size="md" src={user.image}>
           LF
         </Avatar>
       }
-      placement="end"
-      shadow="lg"
     >
       <Menu.Label>Aplicación</Menu.Label>
       <Menu.Item

@@ -17,6 +17,9 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { format, differenceInDays, isToday as isTodayFn } from 'date-fns';
 import { es } from 'date-fns/locale';
+import useAppointments from 'hooks/client/useAppointments.hook';
+import { useDrawer } from 'hooks';
+import { DRAWERS } from 'utils/constants.util';
 import { useStyles } from './AppointmentCard.styles';
 
 const AppointmentCard = ({ appointment }) => {
@@ -28,6 +31,10 @@ const AppointmentCard = ({ appointment }) => {
     scheduleDate = new Date(2022, 4, 31),
   } = appointment;
 
+  const { handleSetActive } = useAppointments();
+
+  const { handleOpen } = useDrawer(DRAWERS.CLIENT.PAYMENT_METHOD);
+
   const isToday = isTodayFn(new Date(scheduleDate));
 
   const differenceDays = differenceInDays(new Date(scheduleDate), new Date());
@@ -37,7 +44,8 @@ const AppointmentCard = ({ appointment }) => {
   const { classes, cx } = useStyles({ variant });
 
   const onShowDetailsClickHandler = () => {
-    console.log('Detalles de la cita: ', appointment);
+    handleSetActive(appointment);
+    handleOpen();
   };
 
   return (
@@ -60,7 +68,7 @@ const AppointmentCard = ({ appointment }) => {
             <FontAwesomeIcon icon={faClock} size="sm" />
           </ThemeIcon>
           <Text className={classes.text}>
-            {format(new Date(scheduleDate), 'PPPP', { locale: es })}
+            {format(new Date(scheduleDate), "PPPP '@' hh:mm a", { locale: es })}
           </Text>
         </Group>
       </Stack>

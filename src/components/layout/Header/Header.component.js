@@ -90,11 +90,10 @@ const Header = forwardRef((_, ref) => {
                   </Text>
                 </MediaQuery>
                 <MediaQuery largerThan="xs" styles={{ display: 'none' }}>
-                  <Burger
-                    opened={isVisible}
-                    onClick={handleToggle}
-                    sx={{ marginRight: 'auto' }}
-                  />
+                  <Group spacing="xs" sx={{ marginRight: 'auto' }}>
+                    <Burger opened={isVisible} onClick={handleToggle} />
+                    <Text component="p">Menu</Text>
+                  </Group>
                 </MediaQuery>
                 <Group spacing="lg">
                   <Indicator

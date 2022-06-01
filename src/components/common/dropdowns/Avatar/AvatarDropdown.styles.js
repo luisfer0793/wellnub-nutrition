@@ -4,7 +4,7 @@ export const useStyles = createStyles(theme => ({
   icon: {
     color: 'currentcolor',
   },
-  avatar: {
+  menu: {
     '&:hover': {
       cursor: 'pointer',
     },

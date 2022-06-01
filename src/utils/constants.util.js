@@ -166,10 +166,25 @@ export const CALENDAR_EVENT_TYPES = {
   RANDOM: 'ALEATORIO',
 };
 
+// ---- Z-INDEXES ----
+export const ZINDEX = {
+  OVERLAY: 100,
+  NAVBAR: 101,
+  DRAWER: 102,
+};
+
 // ---- REACT QUERY KEYS ----
 export const QUERY_KEYS = {
   CLIENT: {
     GET_APPOINTMENTS: 'GET_APPOINTMENTS',
     GET_RECEIVED_PASSES: 'GET_RECEIVED_PASSES',
+  },
+};
+
+// ---- DRAWERS NAMES ----
+export const DRAWERS = {
+  CLIENT: {
+    PAYMENT_METHOD: 'PAYMENT_METHOD',
+    CHECKOUT: 'CHECKOUT',
   },
 };

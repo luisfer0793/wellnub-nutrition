@@ -1,6 +1,8 @@
+import { useDispatch } from 'react-redux';
 import { useQuery } from 'react-query';
 import { QUERY_KEYS } from 'utils/constants.util';
 import { useWellnubAPI } from 'hooks';
+// import { setAppointmentsCollection } from 'redux/slices/appointments/appointments.slice';
 
 export const useAppointmentsQuery = () => {
   const wellnub = useWellnubAPI();
